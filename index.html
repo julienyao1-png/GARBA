@@ -103,7 +103,7 @@
   <h3>Garba Classique</h3>
   <p class="price">1 000 CFA</p>
   <p>Attiéké + Thon + Piment</p>
-  <button class="btn">Choisir</button>
+  <button class="btn" onclick="selectFormule('Garba Classique - 1000')">Choisir</button>
 </div>
 
 <div class="card">
@@ -112,7 +112,7 @@
   <h3>Garba Généreux</h3>
   <p class="price">1 500 CFA</p>
   <p>Plus de thon, plus d'attiéké</p>
-  <button class="btn">Choisir</button>
+  <button class="btn" onclick="selectFormule('Garba Généreux - 1500')">Choisir</button>
 </div>
 
 <div class="card">
@@ -120,7 +120,7 @@
   <h3>Garba Royal</h3>
   <p class="price">2 000 CFA</p>
   <p>Portion XXL + accompagnements</p>
-  <button class="btn">Choisir</button>
+  <button class="btn" onclick="selectFormule('Garba Royal - 2000')">Choisir</button>
 </div>
 
 <div class="card">
@@ -129,7 +129,7 @@
   <h3>Croupion de Dindon</h3>
   <p class="price">1 000 CFA</p>
   <p>Croustillant + Attiéké</p>
-  <button class="btn">Choisir</button>
+  <button class="btn" onclick="selectFormule('Croupion Dindon - 1000')">Choisir</button>
 </div>
 
 <div class="card">
@@ -138,7 +138,7 @@
   <h3>Croupion Généreux</h3>
   <p class="price">1 500 CFA</p>
   <p>Portion améliorée + épices</p>
-  <button class="btn">Choisir</button>
+  <button class="btn" onclick="selectFormule('Croupion Dindon - 1500')">Choisir</button>
 </div>
 
 <div class="card">
@@ -146,7 +146,7 @@
   <h3>Croupion Royal</h3>
   <p class="price">2 000 CFA</p>
   <p>Portion XXL</p>
-  <button class="btn">Choisir</button>
+  <button class="btn" onclick="selectFormule('Croupion Dindon - 2000')">Choisir</button>
 </div>
 
   </div>
@@ -154,5 +154,10 @@
   window.addEventListener('scroll', () => {
     document.getElementById('header').classList.toggle('scrolled', window.scrollY > 30);
   });
+
+  // selectFormule helper for frontend-only flow
+  function selectFormule(txt){
+    alert('Vous avez sélectionné: ' + txt + '\nUtilisez la version avec paiement pour commander.');
+  }
 </script></body>
 </html>

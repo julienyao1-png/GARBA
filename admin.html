@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Admin — RESTAURANT GARBA DELICES CHEZ ZAMBA</title>
+  <style>
+    body{font-family:sans-serif;background:#f7f7f8;margin:20px}
+    .card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06);margin-bottom:12px}
+    h1{margin-bottom:10px}
+  </style>
+</head>
+<body>
+  <h1>Tableau de bord — Commandes</h1>
+  <div id="orders"></div>
+  <script>
+    async function load(){
+      const res = await fetch('/api/orders');
+      const data = await res.json();
+      const box = document.getElementById('orders');
+      box.innerHTML = '';
+      data.reverse().forEach(o=>{
+        const d = document.createElement('div');
+        d.className='card';
+        d.innerHTML = `<strong>${o.id}</strong> — ${o.status}<br>
+        <strong>${o.nom}</strong> — ${o.telephone}<br>
+        ${o.formule}<br>
+        <em>${new Date(o.createdAt).toLocaleString()}</em>
+        <div style="margin-top:8px">
+          <button onclick="updateStatus('${o.id}','preparing')">En préparation</button>
+          <button onclick="updateStatus('${o.id}','delivered')">Livré</button>
+        </div>`;
+        box.appendChild(d);
+      });
+    }
+    async function updateStatus(id,status){
+      await fetch('/api/orders/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,status})});
+      load();
+    }
+    load();
+    setInterval(load,10000);
+  </script>
+</body>
+</html>
